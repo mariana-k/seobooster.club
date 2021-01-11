@@ -3,17 +3,17 @@ import {GET_PAGES_URI} from "../src/queries/pages/get-pages";
 import {isEmpty} from 'lodash';
 import {GET_PAGE} from "../src/queries/pages/get-page";
 import { useRouter } from 'next/router'
-import Layout from "../src/components/layout";
-import {isCustomPageUri} from "../src/utils/slug";
+import Layout from "../src/components/layout/Layout";
+import {isCustomPageUri} from "../src/utils/slugs";
 
 const Page = ({ data }) => {
-    const router = useRouter()
+    const router = useRouter();
     if (router.isFallback) {
         return <div>Loading...</div>
     }
 
     return (
-        <Layout data={data}>
+        <Layout data={{data: data}}>
             {router?.query?.slug.join("/")}
         </Layout>
     );
